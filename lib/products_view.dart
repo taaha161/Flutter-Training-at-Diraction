@@ -88,178 +88,272 @@ class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow,
-      appBar:
-          CustomBar(backgroundcolor: Color(0xFF856084), title: "Products Page"),
-      body: Column(
-        //mainAxisSize: MainAxisSize.min,
-
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Expanded(
-            child: Container(
-              color: Color(0xFFC1CAD6),
-              height: 150,
-              width: MediaQuery.of(context).size.width,
-              child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                  //padding: EdgeInsets.all(20),
-                  itemCount: _products.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 2,
-                      crossAxisCount: 1),
-                  itemBuilder: (context, index) {
-                    return Card(
-                        surfaceTintColor: Colors.white,
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        shadowColor: Color(0xFFC1CAD6),
-                        child: Column(
-                          children: [
-                            ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular((20)),
-                                ),
-                                child: Image.asset(
-                                  'lib/assets/images/car.jpg',
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 200,
-                                  fit: BoxFit.fill,
-                                )
-                                // Image.network(
-                                //   _products[index].imageurl,
-                                //   width: MediaQuery.of(context).size.width,
-                                //   height: 200,
-                                //   fit: BoxFit.fill,
-                                // ),
-                                ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Name: ${_products[index].name}" ?? "No name",
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                                "Price: \$ ${_products[index].price.toString()}"),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Description: ${_products[index].description}",
-                              overflow: TextOverflow.clip,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold),
-                              softWrap: true,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              "Rating: ${_products[index].rating.toString()}",
-                              overflow: TextOverflow.clip,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold),
-                              softWrap: true,
-                            )
-                          ],
-                        ));
-
-                    // GridTile(
-                    //     child: Column(
-                    //   children: [
-                    //     Image.network(
-                    //       _products[index].imageurl,
-                    //       width: 50,
-                    //       height: 100,
-                    //       fit: BoxFit.contain,
-                    //     ),
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Text("Name: ${_products[index].name}" ?? "No name"),
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Text("Price: \$ ${_products[index].price.toString()}"),
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Text(
-                    //       "Description: ${_products[index].description}",
-                    //       overflow: TextOverflow.clip,
-                    //       style: TextStyle(
-                    //           fontSize: 12, fontWeight: FontWeight.bold),
-                    //       softWrap: true,
-                    //     ),
-                    //     SizedBox(
-                    //       height: 10,
-                    //     ),
-                    //     Text(
-                    //       "Qty: ${_products[index].qty}",
-                    //       overflow: TextOverflow.clip,
-                    //       style: TextStyle(
-                    //           fontSize: 12, fontWeight: FontWeight.bold),
-                    //       softWrap: true,
-                    //     )
-                    //   ],
-                    // ));
-                  }),
-            ),
-          ),
-          Divider(
-            height: 2,
-            //color: Colors.black,
-          ),
-          Expanded(
-            child: Container(
-              color: Colors.green,
-              height: 100,
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                  controller: listController,
-                  shrinkWrap: true,
-
-                  //padding: EdgeInsets.all(20),
-                  itemCount: _products.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      tileColor: Colors.orangeAccent,
-                      leading: Icon(Icons.add_box),
-                      onTap: () {
-                        // setState(() {
-                        //   _products[index].restock(5);
-                        // });
-                        _showRatingsSheet(context, index);
-                      },
-                      title: Text(
-                        "Name: ${_products[index].name}" ?? "No name",
-                        style: TextStyle(fontFamily: "Miology"),
-                      ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.shop),
-                        onPressed: () {
-                          setState(() {
-                            _products[index].addToCart();
-                          });
-                          print(_products[index].name);
-                          print(_products[index].qty);
-                        },
-                      ),
-                    );
-                  }),
-            ),
-          ),
-        ],
+      backgroundColor: Colors.amberAccent,
+      appBar: CustomBar(
+        backgroundcolor: Colors.amber,
+        title: "Scrollable View",
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular((20)),
+                ),
+                child: Image.asset(
+                  'lib/assets/images/car.jpg',
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  fit: BoxFit.fill,
+                )),
+            ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular((20)),
+                ),
+                child: Image.asset(
+                  'lib/assets/images/car.jpg',
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  fit: BoxFit.fill,
+                )),
+            ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular((20)),
+                ),
+                child: Image.asset(
+                  'lib/assets/images/car.jpg',
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  fit: BoxFit.fill,
+                )),
+            ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular((20)),
+                ),
+                child: Image.asset(
+                  'lib/assets/images/car.jpg',
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  fit: BoxFit.fill,
+                )),
+            ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular((20)),
+                ),
+                child: Image.asset(
+                  'lib/assets/images/car.jpg',
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  fit: BoxFit.fill,
+                )),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Text(
+            //   "Name: ${_products[0].name}" ?? "No name",
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Text("Price: \$ ${_products[0].price.toString()}"),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Text(
+            //   "Description: ${_products[0].description}",
+            //   overflow: TextOverflow.clip,
+            //   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            //   softWrap: true,
+            // ),
+            // Text(
+            //   "Rating: ${_products[0].rating.toString()}",
+            //   overflow: TextOverflow.clip,
+            //   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            //   softWrap: true,
+            // ),
+          ],
+        ),
       ),
     );
   }
-}
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     backgroundColor: Colors.yellow,
+  //     appBar:
+  //         CustomBar(backgroundcolor: Color(0xFF856084), title: "Products Page"),
+  //     body: Column(
+  //       //mainAxisSize: MainAxisSize.min,
+
+  //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  //       children: [
+  //         Expanded(
+  //           child: Container(
+  //             color: Color(0xFFC1CAD6),
+  //             height: 250,
+  //             width: MediaQuery.of(context).size.width,
+  //             child: GridView.builder(
+  //                 scrollDirection: Axis.horizontal,
+  //                 //padding: EdgeInsets.all(20),
+  //                 itemCount: _products.length,
+  //                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //                     crossAxisSpacing: 2,
+  //                     mainAxisSpacing: 2,
+  //                     crossAxisCount: 1),
+  //                 itemBuilder: (context, index) {
+  //                   return Card(
+  //                       surfaceTintColor: Colors.white,
+  //                       color: Colors.white,
+  //                       shape: RoundedRectangleBorder(
+  //                           borderRadius: BorderRadius.circular(20)),
+  //                       shadowColor: Color(0xFFC1CAD6),
+  //                       child: Column(
+  //                         mainAxisSize: MainAxisSize.min,
+  //                         children: [
+  //                           ClipRRect(
+  //                               borderRadius: BorderRadius.only(
+  //                                 topLeft: Radius.circular(20),
+  //                                 topRight: Radius.circular((20)),
+  //                               ),
+  //                               child: Image.asset(
+  //                                 'lib/assets/images/car.jpg',
+  //                                 width: MediaQuery.of(context).size.width,
+  //                                 height: 200,
+  //                                 fit: BoxFit.fill,
+  //                               )
+  //                               // Image.network(
+  //                               //   _products[index].imageurl,
+  //                               //   width: MediaQuery.of(context).size.width,
+  //                               //   height: 200,
+  //                               //   fit: BoxFit.fill,
+  //                               // ),
+  //                               ),
+  //                           SizedBox(
+  //                             height: 10,
+  //                           ),
+  //                           Text(
+  //                             "Name: ${_products[index].name}" ?? "No name",
+  //                           ),
+  //                           SizedBox(
+  //                             height: 10,
+  //                           ),
+  //                           Text(
+  //                               "Price: \$ ${_products[index].price.toString()}"),
+  //                           SizedBox(
+  //                             height: 10,
+  //                           ),
+  //                           Text(
+  //                             "Description: ${_products[index].description}",
+  //                             overflow: TextOverflow.clip,
+  //                             style: TextStyle(
+  //                                 fontSize: 12, fontWeight: FontWeight.bold),
+  //                             softWrap: true,
+  //                           ),
+  //                           Text(
+  //                             "Rating: ${_products[index].rating.toString()}",
+  //                             overflow: TextOverflow.clip,
+  //                             style: TextStyle(
+  //                                 fontSize: 12, fontWeight: FontWeight.bold),
+  //                             softWrap: true,
+  //                           )
+  //                         ],
+  //                       ));
+
+  //                   // GridTile(
+  //                   //     child: Column(
+  //                   //   children: [
+  //                   //     Image.network(
+  //                   //       _products[index].imageurl,
+  //                   //       width: 50,
+  //                   //       height: 100,
+  //                   //       fit: BoxFit.contain,
+  //                   //     ),
+  //                   //     SizedBox(
+  //                   //       height: 10,
+  //                   //     ),
+  //                   //     Text("Name: ${_products[index].name}" ?? "No name"),
+  //                   //     SizedBox(
+  //                   //       height: 10,
+  //                   //     ),
+  //                   //     Text("Price: \$ ${_products[index].price.toString()}"),
+  //                   //     SizedBox(
+  //                   //       height: 10,
+  //                   //     ),
+  //                   //     Text(
+  //                   //       "Description: ${_products[index].description}",
+  //                   //       overflow: TextOverflow.clip,
+  //                   //       style: TextStyle(
+  //                   //           fontSize: 12, fontWeight: FontWeight.bold),
+  //                   //       softWrap: true,
+  //                   //     ),
+  //                   //     SizedBox(
+  //                   //       height: 10,
+  //                   //     ),
+  //                   //     Text(
+  //                   //       "Qty: ${_products[index].qty}",
+  //                   //       overflow: TextOverflow.clip,
+  //                   //       style: TextStyle(
+  //                   //           fontSize: 12, fontWeight: FontWeight.bold),
+  //                   //       softWrap: true,
+  //                   //     )
+  //                   //   ],
+  //                   // ));
+  //                 }),
+  //           ),
+  //         ),
+  //         Divider(
+  //           height: 2,
+  //           //color: Colors.black,
+  //         ),
+  //         Expanded(
+  //           child: Container(
+  //             color: Colors.green,
+  //             height: 75,
+  //             width: MediaQuery.of(context).size.width,
+  //             child: ListView.builder(
+  //                 controller: listController,
+  //                 shrinkWrap: true,
+
+  //                 //padding: EdgeInsets.all(20),
+  //                 itemCount: _products.length,
+  //                 itemBuilder: (context, index) {
+  //                   return ListTile(
+  //                     tileColor: Colors.orangeAccent,
+  //                     leading: Icon(Icons.add_box),
+  //                     onTap: () {
+  //                       // setState(() {
+  //                       //   _products[index].restock(5);
+  //                       // });
+  //                       _showRatingsSheet(context, index);
+  //                     },
+  //                     title: Text(
+  //                       "Name: ${_products[index].name}" ?? "No name",
+  //                       style: TextStyle(fontFamily: "Miology"),
+  //                     ),
+  //                     trailing: IconButton(
+  //                       icon: Icon(Icons.shop),
+  //                       onPressed: () {
+  //                         setState(() {
+  //                           _products[index].addToCart();
+  //                         });
+  //                         print(_products[index].name);
+  //                         print(_products[index].qty);
+  //                       },
+  //                     ),
+  //                   );
+  //                 }),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+}
 
 //Implement more button
