@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Weather {
   final double latitude;
   final double longitude;
@@ -8,7 +10,7 @@ class Weather {
   DateTime? sunrise;
   DateTime? currentDate;
   String? description;
-  Forecast? forecasts;
+  List<Forecast>? forecasts;
 
   Weather(
       {required this.latitude,
@@ -22,14 +24,24 @@ class Weather {
       this.forecasts,
       this.sunset});
 
-  factory Weather.fromJson(Map<String, dynamic> json) {
+  factory Weather.fromJson(String rawjson) {
+    final jsondata = json.decode(rawjson);
+    List<Forecast> myForecastList = [];
+
+    final List<Map<String, dynamic>> forecastList = jsondata['forecast'];
+    forecastList.forEach(
+      (element) {
+        myForecastList.add(Forecast.fromJson(element));
+      },
+    );
+
     return Weather(
-        latitude: json['latitude'],
-        longitude: json['longitude'],
-        city: json['city'],
-        temperature: json['temperature'],
-        chanceOfRain: json['chanceOfRain'],
-        forecasts: Forecast.fromJson(json));
+        latitude: jsondata['latitude'],
+        longitude: jsondata['longitude'],
+        city: jsondata['city'],
+        temperature: jsondata['temperature'],
+        chanceOfRain: jsondata['chanceOfRain'],
+        forecasts: jsondata);
   }
 }
 
