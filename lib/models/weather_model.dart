@@ -41,7 +41,7 @@ class Weather {
         city: jsondata['city'],
         temperature: jsondata['temperature'],
         chanceOfRain: jsondata['chanceOfRain'],
-        forecasts: jsondata);
+        forecasts: myForecastList);
   }
 }
 
@@ -63,31 +63,20 @@ class Forecast {
   // object2 = Weather.fromJson(json)
 }
 
-// {
-//   "latitude": 37.7749,
-//   "longitude": -122.4194,
-//   "city": "San Francisco",
-//   "temperature": 18,
-//   "chanceOfRain": 30,
-//   "sunset": "2024-04-18T19:45:00Z",
-//   "sunrise": "2024-04-18T06:30:00Z",
-//   "currentDate": "2024-04-18T12:00:00Z",
-//   "description": "Partly cloudy",
-//   "forecasts": [
-//     {
-//       "date": "2024-04-18",
-//       "temperature": 20,
-//       "description": "Partly cloudy"
-//     },
-//     {
-//       "date": "2024-04-19",
-//       "temperature": 22,
-//       "description": "Sunny"
-//     },
-//     {
-//       "date": "2024-04-20",
-//       "temperature": 19,
-//       "description": "Rainy"
-//     }
-//   ]
-// }
+class User {
+  final name;
+  final id;
+  final bio;
+  final language;
+  final version;
+
+  User({this.name, this.id, this.bio, this.language, this.version});
+
+  factory User.fromJson(Map<String, dynamic> rawData) {
+    return User(
+        id: rawData['id'],
+        name: rawData['name'],
+        language: rawData['language'],
+        version: rawData['version']);
+  }
+}
