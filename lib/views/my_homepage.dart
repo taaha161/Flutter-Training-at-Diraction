@@ -1,4 +1,4 @@
-import 'package:diraction/counter.dart';
+import 'package:diraction/views/counter.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatelessWidget {

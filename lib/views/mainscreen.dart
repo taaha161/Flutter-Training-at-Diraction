@@ -1,5 +1,5 @@
-import 'package:diraction/button1.dart';
-import 'package:diraction/button2.dart';
+import 'package:diraction/views/button1.dart';
+import 'package:diraction/views/button2.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {

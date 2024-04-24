@@ -1,4 +1,4 @@
-import 'package:diraction/second_screen.dart';
+import 'package:diraction/views/second_screen.dart';
 import 'package:diraction/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
