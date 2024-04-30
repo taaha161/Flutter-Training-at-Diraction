@@ -10,7 +10,7 @@ const ApiKey = "df6d173f90d04e2ea33191810242104";
 
 class WeatherController {
   static Future<Weather> fetchData(String cityName) async {
-    await Future.delayed(Duration(seconds: 2));
+    // await Future.delayed(Duration(seconds: 2));
     final Uri apiEndpoint =
         Uri.parse("${baseUrl}current.json?q=${cityName}&key=${ApiKey}");
 
