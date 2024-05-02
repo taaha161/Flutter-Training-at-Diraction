@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "778455773167",
+    "firebase_url": "https://diraction-e0add-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "diraction-e0add",
+    "storage_bucket": "diraction-e0add.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778455773167:android:11388ca2e2e8a500b4101a",
+        "android_client_info": {
+          "package_name": "com.example.diraction"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBi5agXIkr9FaO_XxoTNwf3c3CBSCgO1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
