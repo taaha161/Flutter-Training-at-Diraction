@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:diraction/views/loggedIn.dart';
+import 'package:diraction/views/profile_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +32,12 @@ class SignIN extends StatelessWidget {
               onPressed: () async {
                 signIn(context);
               },
-              child: Text("Login NOW"))
+              child: Text("Login NOW")),
+          ElevatedButton(
+              onPressed: () async {
+                FirebaseAuth.instance.signOut();
+              },
+              child: Text("Logout"))
         ],
       ),
     );
@@ -40,11 +48,12 @@ class SignIN extends StatelessWidget {
       UserCredential credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: emaailController.text, password: passwordController.text);
+      log("User has now logged in");
 
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => LoggedIn(credential)));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Profile()));
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
     }
   }
 }
