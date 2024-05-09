@@ -78,17 +78,30 @@ class _SignUpState extends State<SignUp> {
 
   void signUp() async {
     try {
+      if (FirebaseAuth.instance.currentUser == null) {
+        log("User is not signed in");
+        return;
+      }
+      if (_imgFile == null) {
+        log("Uploading an image is required");
+        return;
+      }
+      if (profilePictureUrl == null) {
+        log("User's image not uploaded");
+      }
       UserCredential credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: emaailController.text, password: passwordController.text);
-
-      await FirebaseFirestore.instance.collection("Users").add({
+      await FirebaseFirestore.instance
+          .collection("Users")
+          .doc(credential.user!.uid)
+          .set({
         "name": nameController.text,
         "username": usernameController.text,
         "age": ageController.text,
         "imageUrl": profilePictureUrl,
         "uid": credential.user!.uid
-      });
+      }, SetOptions(merge: true));
     } catch (e) {
       log(e.toString());
     }

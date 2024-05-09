@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:diraction/views/loggedIn.dart';
 import 'package:diraction/views/profile_view.dart';
+import 'package:diraction/views/user_homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class SignIN extends StatelessWidget {
       log("User has now logged in");
 
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Profile()));
+          context, MaterialPageRoute(builder: (context) => UserHomeScreen()));
     } catch (e) {
       log(e.toString());
     }
