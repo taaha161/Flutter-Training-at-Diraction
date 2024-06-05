@@ -50,8 +50,6 @@ class _TasksViewState extends State<TasksView> {
                                   description: descriptionController.text,
                                   dateToBeCompleted: Timestamp.now());
 
-                              taskIndex++;
-
                               await submitData(task);
 
                               titleController.clear();
@@ -78,13 +76,26 @@ class _TasksViewState extends State<TasksView> {
   Future<void> submitData(Task obj) async {
     final data = obj.toJson();
 
-    await FirebaseFirestore.instance.collection("Tasks").add(data);
+    await FirebaseFirestore.instance
+        .collection("Tasks")
+        .doc(taskIndex.toString())
+        .set(data, SetOptions(merge: true));
+    taskIndex++;
   }
 
   Future<void> updateData(Task obj) async {
+    obj.title = titleController.text;
+    obj.description = descriptionController.text;
     final data = obj.toJson();
 
-    // await FirebaseFirestore.instance.collection("Tasks").;
+    await FirebaseFirestore.instance
+        .collection("Tasks")
+        .doc(obj.id)
+        .set(data, SetOptions(merge: true));
+  }
+
+  Future<void> deleteData(String id) async {
+    await FirebaseFirestore.instance.collection("Tasks").doc(id).delete();
   }
 
   @override
@@ -133,7 +144,12 @@ class _TasksViewState extends State<TasksView> {
                       },
                       title: Text(task.title),
                       subtitle: Text(task.description),
-                      //trailing: Text(task.dateToBeCompleted.toString()),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () async {
+                          await deleteData(task.id);
+                        },
+                      ),
                     );
                   }
                 });
@@ -180,7 +196,7 @@ class _TasksViewState extends State<TasksView> {
 
                               Navigator.pop(context);
                             },
-                            child: Text("Add Task")),
+                            child: Text("Update Task")),
                         ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).pop();
